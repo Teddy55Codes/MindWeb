@@ -1,8 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.API", "MindWeb.API\MindWeb.API.csproj", "{CA04B876-76C9-4872-A8B5-199002C73221}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.Frontend", "MindWeb.Frontend\MindWeb.Frontend.csproj", "{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA04B876-76C9-4872-A8B5-199002C73221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA04B876-76C9-4872-A8B5-199002C73221}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA04B876-76C9-4872-A8B5-199002C73221}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA04B876-76C9-4872-A8B5-199002C73221}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,11 @@
+@MindWeb.API_HostAddress = http://localhost:5129
+
+GET {{MindWeb.API_HostAddress}}/todos/
+Accept: application/json
+
+###
+
+GET {{MindWeb.API_HostAddress}}/todos/1
+Accept: application/json
+
+###
