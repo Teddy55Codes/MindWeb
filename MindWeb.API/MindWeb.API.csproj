@@ -6,6 +6,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
         <PublishAot>true</PublishAot>
+        <NoWarn>$(NoWarn);IL3050;IL2026</NoWarn>
     </PropertyGroup>
 
 </Project>

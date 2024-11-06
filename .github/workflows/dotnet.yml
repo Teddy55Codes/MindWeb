@@ -16,7 +16,7 @@ jobs:
       - name: Lint Commits
         uses: wagoid/commitlint-github-action@v4
         with:
-          configFile: commitlint.config.js  # Optional if you have custom rules
+          configFile: commitlint.config.js  
       
       # Setup .NET environment
       - name: Setup .NET
