@@ -1,7 +1,4 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
-name: .NET
+name: .NET CI/CD
 
 on:
   push:
@@ -15,14 +12,44 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      - uses: actions/checkout@v4
+      
+      # Check commit messages for Conventional Commits schema
+      - name: Lint Commits
+        uses: wagoid/commitlint-github-action@v4
+        with:
+          configFile: commitlint.config.js  # Optional if you have custom rules
+      
+      # Setup .NET environment
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      
+      # Restore dependencies
+      - name: Restore dependencies
+        run: dotnet restore
+      
+      # Run dotnet-format for code style checks
+      - name: Run Code Linting
+        run: dotnet format --check
+      
+      # Build project
+      - name: Build
+        run: dotnet build --no-restore
+      
+      # Test project
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Semantic Release to create version tags and release notes
+      - name: Semantic Release
+        uses: semantic-release/semantic-release@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
