@@ -2,9 +2,7 @@ name: .NET CI/CD
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
@@ -32,7 +30,7 @@ jobs:
       
       # Run dotnet-format for code style checks
       - name: Run Code Linting
-        run: dotnet format --check
+        run: dotnet format MindWeb.sln --verify-no-changes
       
       # Build project
       - name: Build
@@ -41,15 +39,3 @@ jobs:
       # Test project
       - name: Test
         run: dotnet test --no-build --verbosity normal
-
-  release:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      # Semantic Release to create version tags and release notes
-      - name: Semantic Release
-        uses: semantic-release/semantic-release@v3
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
