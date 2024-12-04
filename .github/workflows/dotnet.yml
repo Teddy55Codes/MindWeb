@@ -10,32 +10,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - uses: actions/checkout@v4
-      
+
       # Check commit messages for Conventional Commits schema
       - name: Lint Commits
         uses: wagoid/commitlint-github-action@v4
         with:
-          configFile: commitlint.config.js  
+          configFile: commitlint.config.js
       
       # Setup .NET environment
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-      
+
       # Restore dependencies
       - name: Restore dependencies
         run: dotnet restore
-      
+
       # Run dotnet-format for code style checks
       - name: Run Code Linting
         run: dotnet format MindWeb.sln --verify-no-changes
-      
+
       # Build project
       - name: Build
         run: dotnet build --no-restore
-      
+
       # Test project
       - name: Test
         run: dotnet test --no-build --verbosity normal
+
+      # Log in to GitHub Container Registry
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Build and push Docker image for Frontend
+      - name: Build and Push Frontend Docker Image
+        run: |
+          docker build -t ghcr.io/teddy55codes/mindweb-frontend:latest -f ./MindWeb.Frontend/Dockerfile ./ 
+          docker push ghcr.io/teddy55codes/mindweb-frontend:latest
+
+      # Build and push Docker image for API
+      - name: Build and Push API Docker Image
+        run: |
+          docker build -t ghcr.io/teddy55codes/mindweb-api:latest -f ./MindWeb.API/Dockerfile ./
+          docker push ghcr.io/teddy55codes/mindweb-api:latest
+
+
