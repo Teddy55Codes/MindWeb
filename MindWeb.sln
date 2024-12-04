@@ -1,8 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.API", "MindWeb.API\MindWeb.API.csproj", "{CA04B876-76C9-4872-A8B5-199002C73221}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.Frontend", "MindWeb.Frontend\MindWeb.Frontend.csproj", "{46E9E0F8-98F1-454E-A47C-127FCED4D680}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.Frontend", "MindWeb.Frontend\MindWeb.Frontend.csproj", "{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A44D2235-EBAE-45B5-B68B-4FCD547AE841}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.API", "MindWeb.API\MindWeb.API.csproj", "{C00DB22C-46CA-4462-BC01-B1098C805FA4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -10,13 +15,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CA04B876-76C9-4872-A8B5-199002C73221}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA04B876-76C9-4872-A8B5-199002C73221}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA04B876-76C9-4872-A8B5-199002C73221}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA04B876-76C9-4872-A8B5-199002C73221}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E56B0E7B-DD91-476C-B8C7-80BBA97C459D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46E9E0F8-98F1-454E-A47C-127FCED4D680}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46E9E0F8-98F1-454E-A47C-127FCED4D680}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46E9E0F8-98F1-454E-A47C-127FCED4D680}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46E9E0F8-98F1-454E-A47C-127FCED4D680}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

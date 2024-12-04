@@ -1,0 +1,17 @@
+﻿services:
+  mindweb.frontend:
+    image: mindweb.frontend
+    ports:
+      - "8080:8080"
+    build:
+      context: .
+      dockerfile: MindWeb.Frontend/Dockerfile
+      
+  mindweb.api:
+    image: mindweb.api
+    ports:
+      - "8081:8081"
+    build:
+      context: .
+      dockerfile: MindWeb.API/Dockerfile
+
