@@ -54,11 +54,15 @@ jobs:
         run: |
           docker build -t ghcr.io/teddy55codes/mindweb-frontend:${{ github.sha }} -f ./MindWeb.Frontend/Dockerfile ./ 
           docker push ghcr.io/teddy55codes/mindweb-frontend:${{ github.sha }}
+          docker build -t ghcr.io/teddy55codes/mindweb-frontend:latest -f ./MindWeb.Frontend/Dockerfile ./ 
+          docker push ghcr.io/teddy55codes/mindweb-frontend:latest
 
       # Build and push Docker image for API
       - name: Build and Push API Docker Image
         run: |
           docker build -t ghcr.io/teddy55codes/mindweb-api:${{ github.sha }} -f ./MindWeb.API/Dockerfile ./
           docker push ghcr.io/teddy55codes/mindweb-api:${{ github.sha }}
-
-
+          docker build -t ghcr.io/teddy55codes/mindweb-api:latest -f ./MindWeb.API/Dockerfile ./
+          docker push ghcr.io/teddy55codes/mindweb-api:latest
+          
+          
