@@ -79,12 +79,13 @@ jobs:
     
     steps:
       # Smoke Test (Ping)
-      - name: Smoke Test (Ping)
+      - name: Smoke Test with wget
         run: |
-          echo "Pinging production URL: ${{ vars.PROD_URL }}"
-          if curl --fail -s "${{ vars.PROD_URL }}"; then
-            echo "Smoke test passed: ${{ vars.PROD_URL }} is reachable."
+          echo "Testing URL: ${{ vars.PROD_URL }}"
+          if wget -q --spider "${{ vars.PROD_URL }}"; then
+            echo "Smoke test passed."
           else
-            echo "Smoke test failed: ${{ vars.PROD_URL }} is not reachable."
+            echo "Smoke test failed."
             exit 1
           fi
+ 
