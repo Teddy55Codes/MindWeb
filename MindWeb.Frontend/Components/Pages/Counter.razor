@@ -1,5 +1,7 @@
 ﻿@page "/counter"
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
 @rendermode InteractiveServer
+@inject ProtectedLocalStorage BrowserStorage
 
 <PageTitle>Counter</PageTitle>
 
@@ -12,9 +14,16 @@
 @code {
     private int currentCount = 0;
 
-    private void IncrementCount()
+    private async Task IncrementCount()
     {
         currentCount++;
+        await BrowserStorage.SetAsync("counter", currentCount++);
     }
 
+    /// <inheritdoc />
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        var result = await BrowserStorage.GetAsync<int>("counter");
+        currentCount = result.Success ? result.Value : 0;
+    }
 }
