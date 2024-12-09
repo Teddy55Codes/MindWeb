@@ -1,20 +1,23 @@
 name: .NET CI/CD
 
-env:
-  AZURE_WEBAPP_NAME: MindWeb
-
 on:
   push:
   pull_request:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
       # Checkout code
       - uses: actions/checkout@v4
+
+      - name: Load Environment Variables
+        run: |
+          set -o allexport || true
+          . .env || true
+          set +o allexport || true
+        shell: bash
 
       # Check commit messages for Conventional Commits schema
       - name: Lint Commits
@@ -63,25 +66,75 @@ jobs:
       # Build and push Docker image for API
       - name: Build and Push API Docker Image
         run: |
-          docker build -t ghcr.io/teddy55codes/mindweb-api:${{ github.sha }} -f ./MindWeb.API/Dockerfile ./
+          docker build -t ghcr.io/teddy55codes/mindweb-api:${{ github.sha }} -f ./MindWeb.API/Dockerfile ./ 
           docker push ghcr.io/teddy55codes/mindweb-api:${{ github.sha }}
-          docker build -t ghcr.io/teddy55codes/mindweb-api:latest -f ./MindWeb.API/Dockerfile ./
+          docker build -t ghcr.io/teddy55codes/mindweb-api:latest -f ./MindWeb.API/Dockerfile ./ 
           docker push ghcr.io/teddy55codes/mindweb-api:latest
-  
+
   deploy:
     permissions:
       contents: none
     runs-on: ubuntu-latest
     needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    
+
     steps:
+      - name: Load Environment Variables
+        run: |
+          set -o allexport || true
+          . .env || true
+          set +o allexport || true
+        shell: bash
+
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-          images: 'ghcr.io/teddy55codes/mindweb-frontend:${{ github.sha }}'
+
+  smoke-test:
+    runs-on: ubuntu-latest
+    needs: deploy
+  
+    steps:
+      # Checkout the code to access the .env file
+      - name: Checkout Code
+        uses: actions/checkout@v4
+  
+      # Debug .env File
+      - name: Debug .env File
+        run: |
+          echo "Debugging .env file..."
+          cat .env || echo "No .env file found!"
+  
+      # Load Environment Variables
+      - name: Load Environment Variables
+        run: |
+          if [ -f .env ]; then
+            echo "Loading .env file..."
+            set -o allexport
+            sed -i '1s/^\xEF\xBB\xBF//' .env # Remove BOM if present
+            . .env
+            set +o allexport
+          else
+            echo ".env file not found, skipping."
+            exit 1
+          fi
+        shell: bash
+  
+      # Debug Loaded Environment Variables
+      - name: Debug Loaded Environment Variables
+        run: |
+          echo "AZURE_WEBAPP_NAME: $AZURE_WEBAPP_NAME"
+          echo "PROD_URL: $PROD_URL"
+  
+      # Smoke Test (Ping)
+      - name: Smoke Test (Ping)
+        run: |
+          echo "Pinging production URL: $PROD_URL"
+          if curl --fail -s "$PROD_URL"; then
+            echo "Smoke test passed: $PROD_URL is reachable."
+          else
+            echo "Smoke test failed: $PROD_URL is not reachable."
+            exit 1
+          fi
