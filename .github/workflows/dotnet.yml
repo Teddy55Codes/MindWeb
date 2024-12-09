@@ -81,10 +81,10 @@ jobs:
       # Smoke Test (Ping)
       - name: Smoke Test (Ping)
         run: |
-          echo "Pinging production URL: ${{ secrets.PROD_URL }}"
-          if curl --fail -s "${{ secrets.PROD_URL }}"; then
-            echo "Smoke test passed: ${{ secrets.PROD_URL }} is reachable."
+          echo "Pinging production URL: ${{ env.PROD_URL }}"
+          if curl --fail -s "${{ env.PROD_URL }}"; then
+            echo "Smoke test passed: ${{ env.PROD_URL }} is reachable."
           else
-            echo "Smoke test failed: ${{ secrets.PROD_URL }} is not reachable."
+            echo "Smoke test failed: ${{ env.PROD_URL }} is not reachable."
             exit 1
           fi
