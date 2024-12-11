@@ -79,8 +79,10 @@ jobs:
     
     steps:
       # Smoke Test (Ping)
-      - name: Smoke Test with wget
+      - name: Smoke Test with ping
         run: |
+          echo "Wait for website to start"
+          sleep 5
           echo "Testing URL: ${{ vars.PROD_URL }}"
           if ping -c 1 "${{ vars.PROD_URL }}" &> /dev/null
           then
