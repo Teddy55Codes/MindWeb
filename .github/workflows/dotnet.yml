@@ -82,10 +82,11 @@ jobs:
       - name: Smoke Test with wget
         run: |
           echo "Testing URL: ${{ vars.PROD_URL }}"
-          if wget -q --spider "${{ vars.PROD_URL }}"; then
-            echo "Smoke test passed."
+          if ping -c 1 "${{ vars.PROD_URL }}" &> /dev/null
+          then
+              echo "Smoke test passed."
           else
-            echo "Smoke test failed."
-            exit 1
+              echo "Smoke test failed."
+              exit 1
           fi
  
