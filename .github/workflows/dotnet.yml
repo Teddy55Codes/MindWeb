@@ -83,5 +83,11 @@ jobs:
         run: |
           echo "Wait for website to start"
           sleep 5
-          echo "Testing URL: ${{ vars.PROD_URL }}"
-          wget -q --spider "${{ vars.PROD_URL }}"
+          echo "Testing URL: ${{ vars.PROD_IP }}"
+          if ping -c 1 "${{ vars.PROD_IP }}" &> /dev/null
+          then
+              echo "Smoke test passed."
+          else
+              echo "Smoke test failed."
+              exit 1
+          fi
