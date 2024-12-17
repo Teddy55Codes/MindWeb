@@ -84,5 +84,4 @@ jobs:
           echo "Wait for website to start"
           sleep 5
           echo "Testing URL: ${{ vars.PROD_URL }}"
-          ping -c 1 "${{ vars.PROD_URL }}"
- 
+          wget -q --spider "${{ vars.PROD_URL }}"
