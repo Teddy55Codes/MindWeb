@@ -84,11 +84,5 @@ jobs:
           echo "Wait for website to start"
           sleep 5
           echo "Testing URL: ${{ vars.PROD_URL }}"
-          if ping -c 1 "${{ vars.PROD_URL }}" &> /dev/null
-          then
-              echo "Smoke test passed."
-          else
-              echo "Smoke test failed."
-              exit 1
-          fi
+          ping -c 1 "${{ vars.PROD_URL }}"
  
