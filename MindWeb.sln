@@ -5,12 +5,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A44D2235-EBAE-45B5-B68B-4FCD547AE841}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-        .dockerignore = .dockerignore
-        docker-compose.yml = docker-compose.yml
-        .github/workflows/dotnet.yml = .github/workflows/dotnet.yml
+		.dockerignore = .dockerignore
+		docker-compose.yml = docker-compose.yml
+		.github/workflows/dotnet.yml = .github/workflows/dotnet.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.API", "MindWeb.API\MindWeb.API.csproj", "{C00DB22C-46CA-4462-BC01-B1098C805FA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MindWeb.Test", "MindWeb.Test\MindWeb.Test.csproj", "{DD88D840-1C98-4D67-9AA8-C6CC41A38DA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,5 +28,9 @@ Global
 		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C00DB22C-46CA-4462-BC01-B1098C805FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD88D840-1C98-4D67-9AA8-C6CC41A38DA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD88D840-1C98-4D67-9AA8-C6CC41A38DA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD88D840-1C98-4D67-9AA8-C6CC41A38DA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD88D840-1C98-4D67-9AA8-C6CC41A38DA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
