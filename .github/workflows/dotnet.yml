@@ -32,7 +32,7 @@ jobs:
 
       # Test project
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal -- --report-trx --coverage
 
       # Log in to GitHub Container Registry
       - name: Log in to GitHub Container Registry
