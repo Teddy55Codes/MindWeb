@@ -78,13 +78,13 @@ jobs:
     needs: deploy
     
     steps:
-      # Smoke Test (Ping)
-      - name: Smoke Test with ping
+      # Smoke Test (curl)
+      - name: Smoke Test with curl
         run: |
           echo "Wait for website to start"
           sleep 5
-          echo "Testing URL: ${{ vars.PROD_IP }}"
-          if ping -c 1 "${{ vars.PROD_IP }}" &> /dev/null
+          echo "Testing URL: ${{ vars.PROD_URL }}"
+          if curl --silent --head --fail "${{ vars.PROD_URL }}" > /dev/null
           then
               echo "Smoke test passed."
           else
