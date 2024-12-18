@@ -12,7 +12,7 @@ public class IntegrationTests
 
         await Assert.That(weatherService.GetWeatherForecasts().Length).IsGreaterThan(0);
     }
-    
+
     [Test]
     [Repeat(3)]
     public async Task GenerateSingleWeatherForecastWithValidTemperatureC()
@@ -20,7 +20,7 @@ public class IntegrationTests
         var weatherForecast = new WeatherForecast();
         await Assert.That(weatherForecast.TemperatureC).IsGreaterThanOrEqualTo(0);
     }
-    
+
     [Test]
     [Repeat(3)]
     public async Task GenerateSingleWeatherForecastWithValidTemperatureF()

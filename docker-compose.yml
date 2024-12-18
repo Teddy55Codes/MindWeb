@@ -6,7 +6,7 @@
     build:
       context: .
       dockerfile: MindWeb.Frontend/Dockerfile
-      
+  
   mindweb.api:
     image: mindweb.api
     ports:

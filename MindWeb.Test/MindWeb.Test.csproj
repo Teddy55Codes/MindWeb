@@ -10,12 +10,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="TUnit" Version="0.5.6" />
+        <PackageReference Include="TUnit" Version="0.5.6"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MindWeb.API\MindWeb.API.csproj" />
-      <ProjectReference Include="..\MindWeb.Frontend\MindWeb.Frontend.csproj" />
+        <ProjectReference Include="..\MindWeb.API\MindWeb.API.csproj"/>
+        <ProjectReference Include="..\MindWeb.Frontend\MindWeb.Frontend.csproj"/>
     </ItemGroup>
 
 </Project>

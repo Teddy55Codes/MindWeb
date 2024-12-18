@@ -9,7 +9,7 @@ public class UnitTests
     public async Task GenerateWeatherForecastWithValidWeather()
     {
         var weatherService = new WeatherService();
-        
+
         await Assert.That(weatherService.GetWeatherForecasts()[0].Summary).IsTypeOf<string>();
     }
 }
