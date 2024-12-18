@@ -1,12 +1,15 @@
-﻿namespace MindWeb.Test;
+﻿using MindWeb.Frontend.Services.WeatherService;
+
+namespace MindWeb.Test;
 
 public class UnitTests
 {
     [Test]
-    public async Task MyTest()
+    [Repeat(11)]
+    public async Task GenerateWeatherForecastWithValidWeather()
     {
-#pragma warning disable TUnitAssertions0005
-        await Assert.That(1).IsEqualTo(1);
-#pragma warning restore TUnitAssertions0005
+        var weatherService = new WeatherService();
+        
+        await Assert.That(weatherService.GetWeatherForecasts()[0].Summary).IsTypeOf<string>();
     }
 }
